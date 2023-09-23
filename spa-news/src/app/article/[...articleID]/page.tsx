@@ -6,7 +6,6 @@ export default async function Page({ params }: { params: { articleID: string[] }
   const id = params.articleID.join('/');
   const apiService = new ApiService();
   const article: ArticleInCatalog = await apiService.getCurrentArticle(id);
-  console.log(article.webTitle)
 
   return (
     <article className="flex flex-col	items-center p-3	">

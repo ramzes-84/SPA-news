@@ -1,6 +1,7 @@
 export type ArticleInCatalog = {
   fields: {
-    body: ReactNode;thumbnail: string
+    body: string;
+    thumbnail: string
 };
   id: string;
   type: string;
