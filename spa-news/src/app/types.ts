@@ -1,5 +1,7 @@
 export type ArticleInCatalog = {
-  fields: {thumbnail: string};
+  fields: {
+    body: ReactNode;thumbnail: string
+};
   id: string;
   type: string;
   sectionId: string;
@@ -11,4 +13,11 @@ export type ArticleInCatalog = {
   isHosted: boolean;
   pillarId: string;
   pillarName: string;
+}
+
+export type ArticleResponse = {
+  status: string;
+  userTier: string;
+  total: string;
+  content: string;
 }
