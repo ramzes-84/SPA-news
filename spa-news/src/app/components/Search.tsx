@@ -1,13 +1,16 @@
 'use client'
 
+import { useRouter } from "next/navigation";
 import { FormEvent } from "react"
 
 export function Search() {
+  const router = useRouter();
+
   function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const formJSON = Object.fromEntries(formData.entries())
-    console.log(formJSON)
+    const formJSON = Object.fromEntries(formData.entries());
+    if(formJSON.name) router.push(`/search/${formJSON.name}`);
   }
 
   return (
