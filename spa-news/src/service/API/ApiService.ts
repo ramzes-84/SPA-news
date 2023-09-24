@@ -1,11 +1,11 @@
-import { sort } from "@/app/types";
+import { Sort } from "@/app/types";
 
 const { API_KEY } = process.env;
 const NEWS_ENDPOINT = 'https://content.guardianapis.com/search';
 const ARTICLE_ENDPOINT = 'https://content.guardianapis.com/';
 
 export class ApiService {
-  public async getNews(limit: number = 10, order: sort = 'newest', key?: string) {
+  public async getNews(limit: number = 10, order: Sort = 'newest', key?: string) {
     let url = `${NEWS_ENDPOINT}?order-by=${order}&api-key=${API_KEY}&show-fields=all`;
     if(key) url = `${NEWS_ENDPOINT}?order-by=${order}&q=${key}&api-key=${API_KEY}&show-fields=all`;
     const response = await fetch(url);

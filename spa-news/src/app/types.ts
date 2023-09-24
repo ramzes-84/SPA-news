@@ -23,4 +23,4 @@ export type ArticleResponse = {
   content: string;
 }
 
-export type sort = 'newest' | 'oldest' | 'relevance';
+export type Sort = 'newest' | 'oldest' | 'relevance';

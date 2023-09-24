@@ -1,8 +1,8 @@
-import { useRouter } from "next/navigation";
 import { FormEvent } from "react"
 import { fetchNews } from "./server-actions";
+import { ArticleInCatalog } from "../types";
 
-export function Search({ callback }) {
+export function Search({ callback }: {callback: (arr: ArticleInCatalog[]) => void}) {
 
   async function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
