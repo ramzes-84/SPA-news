@@ -1,11 +1,14 @@
+import { ApiService } from "@/service/API/ApiService";
 import { NewsCatalog } from "./components/NewsCatalog";
-import { Search } from "./components/Search";
+import { ArticleInCatalog } from "./types";
 
-export default function Home() {
+export default async function Home() {
+  const apiService = new ApiService();
+  const newsArr: ArticleInCatalog[] = await apiService.getNews();
+
   return (
     <>
-      <Search />
-      <NewsCatalog />
+      <NewsCatalog newsArr={newsArr} />
     </>
   )
 }

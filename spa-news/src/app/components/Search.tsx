@@ -1,16 +1,17 @@
-'use client'
-
 import { useRouter } from "next/navigation";
 import { FormEvent } from "react"
+import { fetchNewsByKey } from "./server-actions";
 
-export function Search() {
-  const router = useRouter();
+export function Search({ callback }) {
 
-  function handleSearch(event: FormEvent<HTMLFormElement>) {
+  async function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const formJSON = Object.fromEntries(formData.entries());
-    if(formJSON.name) router.push(`/search/${formJSON.name}`);
+    if(formJSON.name) {
+      const foundNews = await fetchNewsByKey(formJSON.name as string);
+      callback(foundNews);
+    };
   }
 
   return (

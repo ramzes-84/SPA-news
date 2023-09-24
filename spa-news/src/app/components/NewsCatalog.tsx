@@ -1,13 +1,18 @@
-import { ApiService } from "@/service/API/ApiService"
+'use client'
+
+import { useState } from "react";
 import { ArticleInCatalog } from "../types";
 import { CreateArticleCard } from "./CreateArticleCard";
+import { Search } from "./Search";
 
-export async function NewsCatalog () {
-  const apiService = new ApiService();
-  const newsArr: ArticleInCatalog[] = await apiService.getNews();
-  const newsCards = newsArr.map((article) => <CreateArticleCard key={article.id} article={article} />)
+export function NewsCatalog ({ newsArr }: { newsArr: ArticleInCatalog[] }) {
+  const [news, setNews] = useState(newsArr);
+  const newsCards = news.map((article) => <CreateArticleCard key={article.id} article={article} />)
 
   return (
-    <div className="flex flex-wrap gap-3 justify-center">{newsCards}</div>
+    <>
+      <Search callback={setNews} />
+      <div className="flex flex-wrap gap-3 justify-center">{newsCards}</div>
+    </>
   )
 }
