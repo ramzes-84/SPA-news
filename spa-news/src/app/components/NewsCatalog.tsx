@@ -12,7 +12,7 @@ export function NewsCatalog ({ newsArr }: { newsArr: ArticleInCatalog[] }) {
   return (
     <>
       <Search callback={setNews} />
-      <div className="flex flex-wrap gap-3 justify-center">{newsCards}</div>
+      <div className="flex flex-wrap gap-3 justify-center">{newsCards.length > 0 ? newsCards : 'Nothing was found'}</div>
     </>
   )
 }

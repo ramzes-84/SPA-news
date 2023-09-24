@@ -22,3 +22,5 @@ export type ArticleResponse = {
   total: string;
   content: string;
 }
+
+export type sort = 'newest' | 'oldest' | 'relevance';
