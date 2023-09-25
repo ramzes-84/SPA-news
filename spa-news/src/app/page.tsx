@@ -4,7 +4,7 @@ import { ArticleInCatalog, RequestParams, Sort } from "./types";
 
 export const params: RequestParams = {
   limit: 10,
-  sort: Sort.newest,
+  sort: Sort.Newest,
   page: 1,
 }
 
