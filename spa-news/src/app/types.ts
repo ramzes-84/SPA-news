@@ -33,5 +33,5 @@ export type RequestParams = {
   limit: number;
   sort: Sort;
   page: number;
-  keyword?: string;
+  keyword: string;
 }

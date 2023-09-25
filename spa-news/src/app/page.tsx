@@ -6,6 +6,7 @@ export const params: RequestParams = {
   limit: 10,
   sort: Sort.newest,
   page: 1,
+  keyword: '',
 }
 
 export default async function Home() {
