@@ -1,7 +1,7 @@
 'use server'
 
 import { ApiService } from "@/service/API/ApiService";
-import { ArticleInCatalog, Sort } from "../types";
+import { ArticleInCatalog } from "../types";
 
 export async function fetchNews(formJSON: {
   [k: string]: FormDataEntryValue;
