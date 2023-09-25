@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link';
+import React from 'react';
 import Image from 'next/image';
 
 export default function Navbar() {
@@ -17,7 +17,13 @@ export default function Navbar() {
               className="text-sm font-bold leading-relaxed inline-block mr-4 py-2  whitespace-nowrap uppercase text-white"
               href="/"
             >
-              <Image src="https://open-platform.theguardian.com/public/img/theguardian-op-logo.svg" width={200} height={45} alt="Logo" className="inline-block hover:opacity-75" />
+              <Image
+                src="https://open-platform.theguardian.com/public/img/theguardian-op-logo.svg"
+                width={200}
+                height={45}
+                alt="Logo"
+                className="inline-block hover:opacity-75"
+              />
             </Link>
             <button
               className="cursor-pointer leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block md:hidden outline-none focus:outline-none"
@@ -29,7 +35,9 @@ export default function Navbar() {
           </div>
           <div className={'md:flex flex-grow items-center' + (navbarOpen ? ' flex' : ' hidden')} data-testid="nav">
             <ul className="flex flex-col md:flex-row list-none md:ml-auto font-serif text-white	">
-              <Link href="/" onClick={closeOnClick}>Main Page</Link>
+              <Link href="/" onClick={closeOnClick}>
+                Main Page
+              </Link>
             </ul>
           </div>
         </div>

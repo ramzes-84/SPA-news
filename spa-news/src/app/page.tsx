@@ -1,12 +1,13 @@
-import { ApiService } from "@/service/API/ApiService";
-import { NewsCatalog } from "./components/NewsCatalog";
-import { ArticleInCatalog, RequestParams, Sort } from "./types";
+import { ApiService } from '@/service/API/ApiService';
+import { NewsCatalog } from './components/NewsCatalog';
+import { ArticleInCatalog, RequestParams, Sort } from './types';
 
 export const params: RequestParams = {
   limit: 10,
   sort: Sort.Newest,
   page: 1,
-}
+  keyword: '',
+};
 
 export default async function Home() {
   const apiService = new ApiService();
@@ -14,7 +15,7 @@ export default async function Home() {
 
   return (
     <>
-      <NewsCatalog newsArr={newsArr} reqestParams={params} />
+      <NewsCatalog newsArr={newsArr} />
     </>
-  )
+  );
 }
