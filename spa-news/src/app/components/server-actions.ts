@@ -1,15 +1,11 @@
 'use server'
 
 import { ApiService } from "@/service/API/ApiService";
-import { ArticleInCatalog } from "../types";
+import { ArticleInCatalog, RequestParams } from "../types";
 
-export async function fetchNews(formJSON: {
-  [k: string]: FormDataEntryValue;
-}) {
-  const keyword = formJSON.keyword as string;
-  const limit = +formJSON.limit;
-  const order = formJSON.sort as string;
+export async function fetchNews(params: RequestParams) {
+  const {keyword, limit, sort, page} = params;
   const apiService = new ApiService();
-  const newsArr: ArticleInCatalog[] = await apiService.getNews(limit, order, keyword);
+  const newsArr: ArticleInCatalog[] = await apiService.getNews(limit, sort, page, keyword);
   return newsArr;
 }

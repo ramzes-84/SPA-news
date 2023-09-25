@@ -23,4 +23,15 @@ export type ArticleResponse = {
   content: string;
 }
 
-export type Sort = 'newest' | 'oldest' | 'relevance';
+export enum Sort {
+  newest = 'newest',
+  oldest = 'oldest',
+  relevance = 'relevance'
+}
+
+export type RequestParams = {
+  limit: number;
+  sort: Sort;
+  page: number;
+  keyword?: string;
+}
