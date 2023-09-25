@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArticleInCatalog } from "../types";
 import Image from 'next/image';
 
-
 export function CreateArticleCard({ article }: { article: ArticleInCatalog}) {
   const articleLink = `article/${article.id}`;
   return (

@@ -19,8 +19,8 @@ export async function fetchNextPageNews(params: RequestParams) {
 }
 
 export async function autoFetchMoreNews(params: RequestParams, oldNews: ArticleInCatalog[]) {
-  params.page += 1;
   const nextPageNews = await fetchNextPageNews(params);
   const news = [...oldNews, ...nextPageNews];
-  return news;
+  const uniqueArticles = new Set(news);
+  return Array.from(uniqueArticles);
 }

@@ -3,8 +3,6 @@ import { params } from "../page";
 import { autoFetchMoreNews, fetchNextPageNews } from "./server-actions";
 import { ArticleInCatalog } from "../types";
 
-
-
 export function LoadMore({ newsCallback, oldNews }: { newsCallback: (news: ArticleInCatalog[]) => void; oldNews: ArticleInCatalog[] }) {
   const bottom = useRef(null);
 
