@@ -29,7 +29,7 @@ export default function Navbar() {
           </div>
           <div className={'md:flex flex-grow items-center' + (navbarOpen ? ' flex' : ' hidden')} data-testid="nav">
             <ul className="flex flex-col md:flex-row list-none md:ml-auto font-serif text-white	">
-              <Link href="/" >Main Page</Link>
+              <Link href="/" onClick={closeOnClick}>Main Page</Link>
             </ul>
           </div>
         </div>

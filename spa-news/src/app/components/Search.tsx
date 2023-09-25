@@ -1,17 +1,14 @@
 import { FormEvent } from "react"
 import { fetchNews } from "./server-actions";
 import { ArticleInCatalog, RequestParams, Sort } from "../types";
+import { params } from "../page";
 
 export function Search(
   {
-    paramsCallback,
     newsCallback,
-    params,
   }:
   {
-    paramsCallback: (params: RequestParams) => void;
     newsCallback: (news: ArticleInCatalog[]) => void;
-    params: RequestParams;
   }) {
 
   async function handleSearch(event: FormEvent<HTMLFormElement>) {
