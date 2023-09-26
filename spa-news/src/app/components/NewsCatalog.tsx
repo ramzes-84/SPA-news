@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ArticleInCatalog, RequestParams } from '../types';
 import { CreateArticleCard } from './CreateArticleCard';
 import { Search } from './Search';
-import { LoadMore } from './LoadMore';
+import { Pagination } from './Pagination';
 
 export function NewsCatalog({ newsArr, reqestParams }: { newsArr: ArticleInCatalog[]; reqestParams: RequestParams }) {
   const [news, setNews] = useState(newsArr);
@@ -13,11 +13,11 @@ export function NewsCatalog({ newsArr, reqestParams }: { newsArr: ArticleInCatal
 
   return (
     <>
-      <Search newsCallback={setNews} />
+      <Search newsCallback={setNews} params={reqestParams} />
       <div className="flex flex-wrap gap-3 justify-center">
         {newsCards.length > 0 ? newsCards : 'Nothing was found'}
       </div>
-      <LoadMore newsCallback={setNews} oldNews={news} />
+      <Pagination params={reqestParams} newsCallback={setNews} oldNews={news} />
     </>
   );
 }

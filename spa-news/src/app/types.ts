@@ -24,9 +24,9 @@ export type ArticleResponse = {
 };
 
 export enum Sort {
-  newest = 'newest',
-  oldest = 'oldest',
-  relevance = 'relevance',
+  Newest = 'newest',
+  Oldest = 'oldest',
+  Relevance = 'relevance',
 }
 
 export type RequestParams = {
