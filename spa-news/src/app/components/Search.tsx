@@ -9,7 +9,7 @@ export function Search({
   newsCallback: (news: ArticleInCatalog[]) => void;
   params: RequestParams;
 }) {
-  async function handleSearch(event: FormEvent<HTMLFormElement>) {
+    async function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const formJSON = Object.fromEntries(formData.entries());

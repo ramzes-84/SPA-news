@@ -1,12 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArticleInCatalog, RequestParams } from '../types';
 import { CreateArticleCard } from './CreateArticleCard';
 import { Search } from './Search';
 import { Pagination } from './Pagination';
 
 export function NewsCatalog({ newsArr, reqestParams }: { newsArr: ArticleInCatalog[]; reqestParams: RequestParams }) {
+  useEffect(() => {
+    if (!localStorage.getItem('newsAppConf')) {
+      localStorage.setItem('newsAppConf', JSON.stringify(reqestParams))
+    }
+  });
+
   const [news, setNews] = useState(newsArr);
 
   const newsCards = news.map((article) => <CreateArticleCard key={article.id} article={article} />);
