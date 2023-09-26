@@ -1,23 +1,16 @@
-import { FormEvent } from "react"
-import { fetchNews } from "./server-actions";
-import { ArticleInCatalog, Sort } from "../types";
-import { params } from "../page";
+import { FormEvent } from 'react';
+import { fetchNews } from './server-actions';
+import { ArticleInCatalog, Sort } from '../types';
+import { params } from '../page';
 
-export function Search(
-  {
-    newsCallback,
-  }:
-  {
-    newsCallback: (news: ArticleInCatalog[]) => void;
-  }) {
-
+export function Search({ newsCallback }: { newsCallback: (news: ArticleInCatalog[]) => void }) {
   async function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const formJSON = Object.fromEntries(formData.entries());
     params.limit = formJSON.limit as unknown as number;
     params.sort = formJSON.sort as Sort;
-    if(formJSON.keyword) params.keyword = formJSON.keyword as string;
+    if (formJSON.keyword) params.keyword = formJSON.keyword as string;
     const foundNews = await fetchNews(params);
     newsCallback(foundNews);
   }
@@ -38,5 +31,5 @@ export function Search(
         <button type="submit">Get news!</button>
       </form>
     </section>
-  )
+  );
 }

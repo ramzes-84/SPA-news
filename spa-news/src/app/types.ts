@@ -1,8 +1,8 @@
 export type ArticleInCatalog = {
   fields: {
     body: string;
-    thumbnail: string
-};
+    thumbnail: string;
+  };
   id: string;
   type: string;
   sectionId: string;
@@ -14,19 +14,19 @@ export type ArticleInCatalog = {
   isHosted: boolean;
   pillarId: string;
   pillarName: string;
-}
+};
 
 export type ArticleResponse = {
   status: string;
   userTier: string;
   total: string;
   content: string;
-}
+};
 
 export enum Sort {
   newest = 'newest',
   oldest = 'oldest',
-  relevance = 'relevance'
+  relevance = 'relevance',
 }
 
 export type RequestParams = {
@@ -34,4 +34,4 @@ export type RequestParams = {
   sort: Sort;
   page: number;
   keyword: string;
-}
+};
