@@ -9,12 +9,11 @@ import { Pagination } from './Pagination';
 export function NewsCatalog({ newsArr, reqestParams }: { newsArr: ArticleInCatalog[]; reqestParams: RequestParams }) {
   useEffect(() => {
     if (!localStorage.getItem('newsAppConf')) {
-      localStorage.setItem('newsAppConf', JSON.stringify(reqestParams))
+      localStorage.setItem('newsAppConf', JSON.stringify(reqestParams));
     }
   });
 
   const [news, setNews] = useState(newsArr);
-
   const newsCards = news.map((article) => <CreateArticleCard key={article.id} article={article} />);
 
   return (
@@ -23,7 +22,7 @@ export function NewsCatalog({ newsArr, reqestParams }: { newsArr: ArticleInCatal
       <div className="flex flex-wrap gap-3 justify-center">
         {newsCards.length > 0 ? newsCards : 'Nothing was found'}
       </div>
-      <Pagination params={reqestParams} newsCallback={setNews} oldNews={news} />
+      <Pagination params={reqestParams} newsCallback={setNews} />
     </>
   );
 }
