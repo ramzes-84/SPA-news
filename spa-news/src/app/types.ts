@@ -35,3 +35,10 @@ export type RequestParams = {
   page: number;
   keyword: string;
 };
+
+export interface IContext {
+  news: [];
+  setNews: ([]) => void;
+  config: {};
+  setConfig: ({}) => void;
+}
