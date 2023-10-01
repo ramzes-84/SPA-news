@@ -13,8 +13,8 @@ export function Search() {
       limit: formJSON.limit as unknown as number,
       sort: formJSON.sort as Sort,
       keyword: formJSON.keyword as string,
-      page: 1
-    }
+      page: 1,
+    };
     setConfig(newConfig);
   }
 

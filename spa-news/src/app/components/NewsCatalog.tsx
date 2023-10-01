@@ -16,7 +16,7 @@ export function NewsCatalog() {
     page: 1,
     keyword: '',
   };
-  const [news, setNews] = useState([<div key='start'>Trying to load news...</div>]);
+  const [news, setNews] = useState([<div key="start">Trying to load news...</div>]);
   const [config, setConfig] = useState<RequestParams>(params);
 
   useEffect(() => {
@@ -29,11 +29,9 @@ export function NewsCatalog() {
   }, [config]);
 
   return (
-    <Context.Provider value={{ config, setConfig}}>
+    <Context.Provider value={{ config, setConfig }}>
       <Search />
-      <div className="flex flex-wrap gap-3 justify-center">
-        {news.length > 0 ? news : 'Nothing was found'}
-      </div>
+      <div className="flex flex-wrap gap-3 justify-center">{news.length > 0 ? news : 'Nothing was found'}</div>
       <Pagination />
     </Context.Provider>
   );

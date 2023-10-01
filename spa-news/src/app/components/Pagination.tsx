@@ -4,14 +4,14 @@ import { Context } from './NewsCatalog';
 
 export function Pagination() {
   const { setConfig, config } = useContext(Context) as unknown as IContext;
-  const newConfig = {...config};
+  const newConfig = { ...config };
 
   function handleNextPage() {
     newConfig.page += 1;
     setConfig(newConfig);
   }
   async function handlePrevPage() {
-    if(newConfig.page < 2) return;
+    if (newConfig.page < 2) return;
     newConfig.page -= 1;
     setConfig(newConfig);
   }
