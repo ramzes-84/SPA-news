@@ -1,23 +1,21 @@
 import { FormEvent, useContext } from 'react';
-import { fetchNews } from './server-actions';
 import { IContext, RequestParams, Sort } from '../types';
 import { Context } from './NewsCatalog';
 
 export function Search() {
-  const {setNews} = useContext(Context) as unknown as IContext;
+  const { setConfig } = useContext(Context) as unknown as IContext;
 
   async function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const formJSON = Object.fromEntries(formData.entries());
-    const params = {
+    const newConfig: RequestParams = {
       limit: formJSON.limit as unknown as number,
       sort: formJSON.sort as Sort,
       keyword: formJSON.keyword as string,
       page: 1
     }
-    const foundNews = await fetchNews(params);
-    setNews(foundNews);
+    setConfig(newConfig);
   }
 
   return (

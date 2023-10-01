@@ -1,25 +1,19 @@
-import { fetchNewsBatch } from './server-actions';
-import { ArticleInCatalog, RequestParams } from '../types';
-import { useState } from 'react';
+import { IContext, RequestParams } from '../types';
+import { useContext } from 'react';
+import { Context } from './NewsCatalog';
 
-interface PaginationArgs {
-  params: RequestParams;
-  newsCallback: (news: ArticleInCatalog[]) => void;
-}
+export function Pagination() {
+  const { setConfig, config } = useContext(Context) as unknown as IContext;
+  const newConfig = {...config};
 
-export function Pagination({ params, newsCallback }: PaginationArgs) {
-  async function handleNextPage() {
-    params.page += 1;
-    const newsBatch = await fetchNewsBatch(params);
-    newsCallback(newsBatch);
+  function handleNextPage() {
+    newConfig.page += 1;
+    setConfig(newConfig);
   }
   async function handlePrevPage() {
-    if (params.page === 1) {
-      return
-    };
-    params.page -= 1;
-    const newsBatch = await fetchNewsBatch(params);
-    newsCallback(newsBatch);
+    if(newConfig.page < 2) return;
+    newConfig.page -= 1;
+    setConfig(newConfig);
   }
 
   return (
@@ -27,7 +21,7 @@ export function Pagination({ params, newsCallback }: PaginationArgs) {
       <button className="p-2 m-2 rounded-2xl bg-slate-500 text-white" type="button" onClick={handlePrevPage}>
         Previous page
       </button>
-      <div className="inline-block text-lg">{params.page}</div>
+      <div className="inline-block text-lg">{config.page}</div>
       <button className="p-2 m-2 rounded-2xl bg-slate-500 text-white" type="button" onClick={handleNextPage}>
         Next page
       </button>

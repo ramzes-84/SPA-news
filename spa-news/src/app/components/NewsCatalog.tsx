@@ -1,25 +1,40 @@
 'use client';
 
-import { createContext, useState } from 'react';
-import { ArticleInCatalog, IContext, RequestParams } from '../types';
+import { createContext, useEffect, useState } from 'react';
+import { RequestParams, Sort } from '../types';
 import { CreateArticleCard } from './CreateArticleCard';
 import { Search } from './Search';
 import { Pagination } from './Pagination';
+import { fetchNews } from './server-actions';
 
 export const Context = createContext({});
 
-export function NewsCatalog({ newsArr, reqestParams }: { newsArr: ArticleInCatalog[]; reqestParams: RequestParams }) {
-  const [news, setNews] = useState(newsArr);
-  const [config, setConfig] = useState(reqestParams);
-  const newsCards = news.map((article) => <CreateArticleCard key={article.id} article={article} />);
+export function NewsCatalog() {
+  const params: RequestParams = {
+    limit: 10,
+    sort: Sort.Newest,
+    page: 1,
+    keyword: '',
+  };
+  const [news, setNews] = useState([]);
+  const [config, setConfig] = useState<RequestParams>(params);
+
+  useEffect(() => {
+    async function loadNews() {
+      const newsArr = await fetchNews(config);
+      const newsCards = newsArr.map((article) => <CreateArticleCard key={article.id} article={article} />);
+      setNews(newsCards);
+    }
+    loadNews();
+  }, [config]);
 
   return (
-    <Context.Provider value={{ news, setNews, config, setConfig }}>
+    <Context.Provider value={{ config, setConfig}}>
       <Search />
       <div className="flex flex-wrap gap-3 justify-center">
-        {newsCards.length > 0 ? newsCards : 'Nothing was found'}
+        {news.length > 0 ? news : null}
       </div>
-      <Pagination params={config} newsCallback={setNews} />
+      <Pagination />
     </Context.Provider>
   );
 }

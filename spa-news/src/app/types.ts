@@ -39,6 +39,6 @@ export type RequestParams = {
 export interface IContext {
   news: [];
   setNews: ([]) => void;
-  config: {};
+  config: RequestParams;
   setConfig: ({}) => void;
 }
