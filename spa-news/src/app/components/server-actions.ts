@@ -3,14 +3,8 @@
 import { ApiService } from '@/service/API/ApiService';
 import { ArticleInCatalog, RequestParams } from '../types';
 
-export async function fetchNews(params: RequestParams) {
+export async function fetchNews(config: RequestParams) {
   const apiService = new ApiService();
-  const newsArr: ArticleInCatalog[] = await apiService.getNews(params);
-  return newsArr;
-}
-
-export async function fetchNewsBatch(params: RequestParams) {
-  const apiService = new ApiService();
-  const newsArr: ArticleInCatalog[] = await apiService.getNews(params);
+  const newsArr: ArticleInCatalog[] = await apiService.getNews(config);
   return newsArr;
 }

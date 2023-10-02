@@ -1,4 +1,4 @@
-import { IContext, RequestParams } from '../types';
+import { IContext } from '../types';
 import { useContext } from 'react';
 import { Context } from './NewsCatalog';
 
@@ -10,7 +10,7 @@ export function Pagination() {
     newConfig.page += 1;
     setConfig(newConfig);
   }
-  async function handlePrevPage() {
+  function handlePrevPage() {
     if (newConfig.page < 2) return;
     newConfig.page -= 1;
     setConfig(newConfig);

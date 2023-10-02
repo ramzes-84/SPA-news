@@ -6,6 +6,7 @@ import { CreateArticleCard } from './CreateArticleCard';
 import { Search } from './Search';
 import { Pagination } from './Pagination';
 import { fetchNews } from './server-actions';
+import { LoadMore } from './LoadMore';
 
 export const Context = createContext({});
 
@@ -29,10 +30,13 @@ export function NewsCatalog() {
   }, [config]);
 
   return (
-    <Context.Provider value={{ config, setConfig }}>
+    <Context.Provider value={{ config, setConfig, news, setNews }}>
       <Search />
       <div className="flex flex-wrap gap-3 justify-center">{news.length > 0 ? news : 'Nothing was found'}</div>
-      <Pagination />
+      <nav className="flex flex-col flex-wrap justify-center">
+        <LoadMore />
+        <Pagination />
+      </nav>
     </Context.Provider>
   );
 }
