@@ -1,9 +1,13 @@
-import { NewsCatalog } from './components/NewsCatalog';
+'use client';
 
-export default async function Home() {
+import { Provider } from 'react-redux';
+import { NewsCatalog } from './components/NewsCatalog';
+import { store } from '@/store/store';
+
+export default function Home() {
   return (
-    <>
+    <Provider store={store}>
       <NewsCatalog />
-    </>
+    </Provider>
   );
 }
