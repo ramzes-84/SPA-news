@@ -1,19 +1,19 @@
 export type ArticleInCatalog = {
-  fields: {
+  fields?: {
     body: string;
     thumbnail: string;
   };
-  id: string;
-  type: string;
-  sectionId: string;
-  sectionName: string;
-  webPublicationDate: string;
-  webTitle: string;
-  webUrl: string;
-  apiUrl: string;
-  isHosted: boolean;
-  pillarId: string;
-  pillarName: string;
+  id: string
+  type: string
+  sectionId: string
+  sectionName: string
+  webPublicationDate: string
+  webTitle: string
+  webUrl: string
+  apiUrl: string
+  isHosted: boolean
+  pillarId: string
+  pillarName: string
 };
 
 export type ArticleResponse = {
@@ -41,4 +41,16 @@ export interface IContext {
   setNews: ([]) => void;
   config: RequestParams;
   setConfig: ({}) => void;
+}
+
+export interface NewsResponse<T> {
+  status: string
+  userTier: string
+  total: number
+  startIndex: number
+  pageSize: number
+  currentPage: number
+  pages: number
+  orderBy: string
+  results: T[]
 }
