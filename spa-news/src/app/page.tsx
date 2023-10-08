@@ -1,6 +1,6 @@
 import { NewsCatalog } from './components/NewsCatalog';
 
-export default async function Home() {
+export default function Home() {
   return (
     <>
       <NewsCatalog />

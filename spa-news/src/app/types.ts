@@ -41,4 +41,6 @@ export interface IContext {
   setNews: ([]) => void;
   config: RequestParams;
   setConfig: ({}) => void;
+  counter: number;
+  setCounter: (page: number) => void;
 }

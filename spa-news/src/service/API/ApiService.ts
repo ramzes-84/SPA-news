@@ -6,13 +6,13 @@ const ARTICLE_ENDPOINT = 'https://content.guardianapis.com/';
 
 export class ApiService {
   public async getNews(params: RequestParams) {
-    const url = `${NEWS_ENDPOINT}?order-by=${params.sort}&page-size=${params.limit}&page=${params.page}&q=${params.keyword}&api-key=${API_KEY}&show-fields=all`;
+    const url = `${NEWS_ENDPOINT}?q=${params.keyword}&order-by=${params.sort}&page-size=${params.limit}&page=${params.page}&api-key=${API_KEY}&show-fields=all`;
     const response = await fetch(url);
     if (response.status === 200) {
       const resFromJSON = await response.json();
       return resFromJSON.response.results;
     }
-    throw new Error('There is something wrong with server!');
+    throw new Error('There is something wrong with the server!');
   }
 
   public async getCurrentArticle(id: string) {
@@ -22,6 +22,6 @@ export class ApiService {
       const resFromJSON = await response.json();
       return resFromJSON.response.content;
     }
-    throw new Error('There is something wrong with server!');
+    throw new Error('There is something wrong with the server!');
   }
 }

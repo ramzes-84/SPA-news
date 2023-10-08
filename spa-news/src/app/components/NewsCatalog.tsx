@@ -9,16 +9,17 @@ import { fetchNews } from './server-actions';
 import { LoadMore } from './LoadMore';
 
 export const Context = createContext({});
+const params: RequestParams = {
+  limit: 10,
+  sort: Sort.Newest,
+  page: 1,
+  keyword: '',
+};
 
 export function NewsCatalog() {
-  const params: RequestParams = {
-    limit: 10,
-    sort: Sort.Newest,
-    page: 1,
-    keyword: '',
-  };
   const [news, setNews] = useState([<div key="start">Trying to load news...</div>]);
   const [config, setConfig] = useState<RequestParams>(params);
+  const [counter, setCounter] = useState(config.page);
 
   useEffect(() => {
     async function loadNews() {
@@ -30,7 +31,7 @@ export function NewsCatalog() {
   }, [config]);
 
   return (
-    <Context.Provider value={{ config, setConfig, news, setNews }}>
+    <Context.Provider value={{ config, setConfig, news, setNews, counter, setCounter }}>
       <Search />
       <div className="flex flex-wrap gap-3 justify-center">{news.length > 0 ? news : 'Nothing was found'}</div>
       <nav className="flex flex-col flex-wrap justify-center">

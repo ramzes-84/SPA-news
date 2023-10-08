@@ -8,7 +8,7 @@ export function Search() {
 
   function onChange(e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) {
     e.preventDefault;
-    if (e.target instanceof HTMLInputElement && e.target.value.length < 3) {
+    if (e.target instanceof HTMLInputElement && e.target.value.length < 3 && e.target.value.length > 0) {
       return;
     }
     if (timerID) clearTimeout(timerID);
