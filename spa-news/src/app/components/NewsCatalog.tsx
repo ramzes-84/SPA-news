@@ -1,12 +1,13 @@
 'use client';
 
-import { createContext, useEffect, useState } from 'react';
+import { ReactElement, createContext, useEffect, useState } from 'react';
 import { RequestParams, Sort } from '../types';
 import { CreateArticleCard } from './CreateArticleCard';
 import { Search } from './Search';
 import { Pagination } from './Pagination';
 import { fetchNews } from './server-actions';
 import { LoadMore } from './LoadMore';
+import Loader from './loader';
 
 export const Context = createContext({});
 const params: RequestParams = {
@@ -17,15 +18,23 @@ const params: RequestParams = {
 };
 
 export function NewsCatalog() {
-  const [news, setNews] = useState([<div key="start">Trying to load news...</div>]);
+  const [news, setNews] = useState<ReactElement[] | string>([]);
   const [config, setConfig] = useState<RequestParams>(params);
   const [counter, setCounter] = useState(config.page);
+  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
     async function loadNews() {
+      setShowLoader(true);
       const newsArr = await fetchNews(config);
+      if (newsArr.length === 0) {
+        setNews('Nothing was found');
+        setShowLoader(false);
+        return;
+      }
       const newsCards = newsArr.map((article) => <CreateArticleCard key={article.id} article={article} />);
       setNews(newsCards);
+      setShowLoader(false);
     }
     loadNews();
   }, [config]);
@@ -33,8 +42,9 @@ export function NewsCatalog() {
   return (
     <Context.Provider value={{ config, setConfig, news, setNews, counter, setCounter }}>
       <Search />
-      <div className="flex flex-wrap gap-3 justify-center">{news.length > 0 ? news : 'Nothing was found'}</div>
-      <nav className="flex flex-col flex-wrap justify-center">
+      <div className="flex flex-wrap gap-3 justify-center">{news}</div>
+      <nav className="flex flex-col flex-wrap justify-center items-center">
+        {showLoader && <Loader />}
         <LoadMore />
         <Pagination />
       </nav>
